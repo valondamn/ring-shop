@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from "../../services/cart.service";
-import {Observable} from "rxjs";
 import {CartModelServer} from "../../models/cart.model";
 
 @Component({
@@ -21,7 +20,7 @@ export class CartComponent implements OnInit {
      this.cartService.cartTotal$.subscribe(total => this.cartTotal = total);
   }
 
-  ChangeQuantity(id: Number, increaseQuantity: Boolean) {
+  ChangeQuantity(id: number, increaseQuantity: boolean) {
     this.cartService.UpdateCartData(id, increaseQuantity);
   }
 
