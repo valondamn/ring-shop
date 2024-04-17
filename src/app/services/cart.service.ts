@@ -23,17 +23,9 @@ export class CartService {
   // Cart Data variable to store the cart information on the server
   private cartDataServer: CartModelServer = {
     data: [{
-      numInCart: 0,
-      product: {
-        id: 0,
-        name: "name",
-        category: "string",
-        description: "string",
-        image: "string",
-        price: 0,
-        quantity: 0,
-        images: "string"
-      }    }],
+      product: undefined,
+      numInCart: 0
+    }],
     total: 0
   };
 
@@ -307,17 +299,7 @@ export class CartService {
     this.cartDataServer = {
       data: [{
         numInCart: 0,
-        product: {
-          id: 0,
-          name: "name",
-          category: "string",
-          description: "string",
-          image: "string",
-          price: 0,
-          quantity: 0,
-          images: "string"
-        }
-
+        product: undefined
       }],
       total: 0
     };
@@ -326,15 +308,6 @@ export class CartService {
 
 }
 
-interface OrderConfirmationResponse {
-  order_id: number;
-  success: boolean;
-  message: string;
-  products: [{
-    id: string,
-    numInCart: string
-  }]
-}
 
 
 
