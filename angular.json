@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ring-shop:build:production"
+              "buildTarget": "ring-shop:build:production"
             },
             "development": {
-              "browserTarget": "ring-shop:build:development"
+              "buildTarget": "ring-shop:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ring-shop:build"
+            "buildTarget": "ring-shop:build"
           }
         },
         "test": {
