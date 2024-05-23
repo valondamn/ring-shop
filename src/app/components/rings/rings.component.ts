@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { ProductModelServer, serverResponse } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
+import { serverResponse } from '../../models/product.model';
+import { CurrencyPipe, NgForOf, NgIf, TitleCasePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'mg-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-rings',
+  standalone: true,
+  imports: [CurrencyPipe, FormsModule, NgForOf, NgIf, TitleCasePipe],
+  templateUrl: './rings.component.html',
+  styleUrl: './rings.component.scss',
 })
-export class HomeComponent implements OnInit {
+export class RingsComponent implements OnInit {
   products: any[] = [];
   searchTerm: string = '';
   noDataFound: boolean = false;
@@ -30,18 +34,6 @@ export class HomeComponent implements OnInit {
         console.log(this.products);
       });
   }
-
-  imageBlocks = [
-    { image: 'assets/img/image1.jpg' },
-    { image: 'assets/img/image2.jpg' },
-    { image: 'assets/img/image3.jpg' },
-    { image: 'assets/img/image4.jpg' },
-    { image: 'assets/img/image5.jpg' },
-    { image: 'assets/img/image6.jpg' },
-    { image: 'assets/img/image7.jpg' },
-    { image: 'assets/img/image8.jpg' },
-  ];
-
   AddProduct(id: number) {
     this.cartService.AddProductToCart(id);
   }
@@ -62,7 +54,9 @@ export class HomeComponent implements OnInit {
       this.productService
         .getAllProducts(1000)
         .subscribe((prods: serverResponse) => {
-          this.products = prods.products;
+          this.products = prods.products.filter(
+            (product) => product.cat_id === 1
+          );
           this.noDataFound = false;
         });
     }

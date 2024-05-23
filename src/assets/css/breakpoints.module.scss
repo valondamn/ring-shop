@@ -1,0 +1,78 @@
+$xsBreakpoint: 576px;
+$smBreakpoint: 768px;
+$mdBreakpoint: 1024px;
+$lgBreakpoint: 1290px;
+$xlBreakpoint: 1440px;
+
+.break {
+  flex-basis: 100%;
+  width: 0;
+}
+@mixin xs-breakpoint {
+  @media only screen and (max-width: $xsBreakpoint) {
+    @content;
+  }
+}
+
+@mixin sm-breakpoint {
+  @media only screen and (min-width: $smBreakpoint) {
+    @content;
+  }
+}
+
+@mixin md-breakpoint {
+  @media only screen and (min-width: $mdBreakpoint) {
+    @content;
+  }
+}
+
+@mixin lg-breakpoint {
+  @media only screen and (min-width: $lgBreakpoint) {
+    @content;
+  }
+}
+
+@mixin xl-breakpoint {
+  @media only screen and (min-width: $xlBreakpoint) {
+    @content;
+  }
+}
+@mixin media-breakpoint-between($lower, $upper) {
+  @if $lower == xs and $upper == sm {
+    @media (min-width: $xsBreakpoint) and (max-width: $smBreakpoint - 1px) {
+      @content;
+    }
+  } @else if $lower == xs and $upper == md {
+    @media (min-width: $xsBreakpoint) and (max-width: $smBreakpoint - 1px) {
+      @content;
+    }
+  } @else if $lower == xs and $upper == lg {
+    @media (min-width: $xsBreakpoint) and (max-width: $smBreakpoint - 1px) {
+      @content;
+    }
+  } @else if $lower == xs and $upper == xl {
+    @media (min-width: $xsBreakpoint) and (max-width: $smBreakpoint - 1px) {
+      @content;
+    }
+  } @else if $lower == sm and $upper == md {
+    @media (min-width: $smBreakpoint) and (max-width: $mdBreakpoint - 1px) {
+      @content;
+    }
+  } @else if $lower == sm and $upper == lg {
+    @media (min-width: $smBreakpoint) and (max-width: $lgBreakpoint - 1px) {
+      @content;
+    }
+  } @else if $lower == sm and $upper == xl {
+    @media (min-width: $smBreakpoint) and (max-width: $xlBreakpoint - 1px) {
+      @content;
+    }
+  } @else if $lower == md and $upper == lg {
+    @media (min-width: $mdBreakpoint) and (max-width: $lgBreakpoint - 1px) {
+      @content;
+    }
+  } @else if $lower == md and $upper == xl {
+    @media (min-width: $mdBreakpoint) and (max-width: $xlBreakpoint - 1px) {
+      @content;
+    }
+  }
+}

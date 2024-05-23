@@ -1,3 +1,105 @@
 .disabled {
   cursor: not-allowed;
 }
+
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .input {
+    width: 450px;
+    height: 50px;
+    margin: 40px 0;
+    border-radius: 40px;
+  }
+}
+
+.error-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .error {
+    font-size: 34px;
+    font-weight: bold;
+    color: red;
+  }
+}
+
+.section-title {
+  margin: 0;
+}
+
+#slideshow .carousel-item img {
+  height: 600px;
+  object-fit: cover;
+}
+
+#slideshow .carousel-caption {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.section-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Style for the Image Blocks Section */
+.image-block {
+  position: relative;
+  padding-top: 100%; /* Makes the block square */
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 30px;
+}
+
+.image-block .image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-block:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-block .image-overlay .btn {
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.image-block {
+  background-color: #000000;
+  width: 311px;
+  height: 270px;
+}
+
+.catalog{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.card{
+  width: 370px;
+  height: 270px;
+}

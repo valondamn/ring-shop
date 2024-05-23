@@ -1,0 +1,33 @@
+.disabled {
+  cursor: not-allowed;
+}
+.input-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .input{
+    width: 450px;
+    height: 50px;
+    margin: 40px 0;
+    border-radius: 40px;
+  }
+}
+
+.error-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .error {
+    font-size: 34px;
+    font-weight: bold;
+    color: red;
+  }
+}
+
+.section-title{
+  margin: 0 ;
+}

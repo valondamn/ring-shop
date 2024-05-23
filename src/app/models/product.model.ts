@@ -7,10 +7,10 @@ export interface ProductModelServer {
   price: number;
   quantity: number;
   images: string;
+  cat_id: number;
 }
 
-
-export interface serverResponse  {
+export interface serverResponse {
   count: number;
-  products: ProductModelServer[]
-};
+  products: ProductModelServer[];
+}

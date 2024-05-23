@@ -1,0 +1,15 @@
+@import "scss/properties";
+
+* {
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+  color: $cl-black;
+  font-family: $font-300;
+}
+
+html {
+  @include scroll;
+}

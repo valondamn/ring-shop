@@ -1,0 +1,15 @@
+<div class="profile-container">
+  <h1>My Profile</h1>
+  <div class="profile-details">
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>First Name:</strong> {{ user.fname }}</p>
+    <p><strong>Last Name:</strong> {{ user.lname }}</p>
+    <p><strong>Age:</strong> {{ user.age }}</p>
+    <img [src]="user.photoUrl" alt="Profile Photo" *ngIf="user.photoUrl">
+
+    <a [routerLink]="['/profile/edit']" class="edit-profile-link">
+      <i class="fa fa-cog" aria-hidden="true"></i> Edit Profile
+    </a>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+@import "scss/colors";
+@import "scss/fonts";
+
+@mixin font-($fontSize, $lineHeight) {
+  font-size: $fontSize;
+  line-height: $lineHeight;
+}
+
+@mixin heading_1 {
+  @include font-(40px, 120%);
+  font-family: $font-700;
+}
+
+@mixin heading_2 {
+  @include font-(32px, 120%);
+  font-family: $font-700;
+}
+
+@mixin heading_3 {
+  @include font-(24px, 120%);
+  font-family: $font-700;
+}
+
+@mixin heading_4 {
+  @include font-(20px, 120%);
+  font-family: $font-700;
+}
+
+@mixin subtitle_1_700 {
+  @include font-(18px, 120%);
+  font-family: $font-700;
+}
+
+@mixin subtitle_2_700 {
+  @include font-(16px, 120%);
+  font-family: $font-700;
+}
+
+@mixin subtitle_2_500 {
+  @include font-(16px, 120%);
+  font-family: $font-500;
+}
+
+@mixin subtitle_2_300 {
+  @include font-(16px, 120%);
+  font-family: $font-300;
+}
+
+@mixin subtitle_3_700 {
+  @include font-(14px, 120%);
+  font-family: $font-700;
+}
+
+@mixin subtitle_3_500 {
+  @include font-(14px, 120%);
+  font-family: $font-500;
+}
+
+@mixin subtitle_3_300 {
+  @include font-(14px, 120%);
+  font-family: $font-300;
+}
+
+@mixin all_caps_300 {
+  @include font-(14px, 140%);
+  font-family: $font-300;
+  text-transform: uppercase;
+}
+
+@mixin small_caps_300 {
+  @include font-(12px, 140%);
+  font-family: $font-300;
+  text-transform: uppercase;
+}
+
+@mixin body_1_300 {
+  @include font-(18px, 140%);
+  font-family: $font-300;
+}
+
+@mixin body_2_300 {
+  @include font-(16px, 140%);
+  font-family: $font-300;
+}
+
+@mixin body_3_500 {
+  @include font-(14px, 140%);
+  font-family: $font-500;
+}
+
+@mixin body_3_300 {
+  @include font-(14px, 140%);
+  font-family: $font-300;
+}

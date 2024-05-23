@@ -1,0 +1,21 @@
+@if (label) {
+  <label>{{ label | translate }}</label>
+}
+<div
+  class="wrapper {{ size }} {{ font }}" [ngClass]="{
+    background: !bgHidden  }"
+>  @if (clearBtnShown && value) {
+  <button class="clear-btn" (click)="clearValue()">
+    <svg-icon src="/assets/icons/input/input-clear.svg"></svg-icon>
+  </button>
+}
+  <input [(ngModel)]="value"
+         (ngModelChange)="onChange($event)" (blur)="onTouched()"
+         [placeholder]="placeholder | translate" [disabled]="disabled"
+  />  @if (type === "search") {
+    <svg-icon src="assets/icons/search.svg"/>
+  }
+</div>@if (helper) {
+  <div class="helper">{{ helper }}</div>
+}
+

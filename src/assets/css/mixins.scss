@@ -1,0 +1,209 @@
+@import "scss/colors";
+@import "scss/fonts";
+@import "scss/flexbox";
+@import "scss/typography";
+
+@mixin scroll {
+  /* width */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    padding-left: 20px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgba(209, 209, 209, 0.4);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $cl-gray-middle;
+    border-radius: 50px;
+  }
+}
+
+@mixin scroll-dark {
+  /* width */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgba(209, 209, 209, 0.4);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $cl-gray-scroll;
+    border-radius: 50px;
+  }
+}
+
+@mixin table-scroll {
+  /* width */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgba(209, 209, 209, 0.4);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $cl-gray-middle;
+    border-radius: 8px;
+  }
+}
+
+@mixin hidden-scroll {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Track */
+  & {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+@mixin blured-border {
+  border: 1px solid rgba($cl-gray-middle, 0.5);
+}
+
+@mixin characteristicsCard {
+  @include flexbox;
+  @include flex-direction(column);
+  @include gap(12px);
+
+  @include flex-grow(2);
+
+  border-radius: 8px;
+  border: 1px solid $cl-gray-middle;
+
+  padding: 24px;
+  background: $cl-gray-light-bg;
+
+  table {
+    tr {
+      td {
+        padding: 4px 0;
+      }
+
+      &:not(:first-of-type) {
+        td {
+          padding-top: 12px;
+        }
+      }
+    }
+  }
+
+  .label {
+    @include subtitle_2_300;
+
+    &::after {
+      content: ":";
+    }
+  }
+
+  .value {
+    @include subtitle_2_500;
+    padding-left: 8px !important;
+  }
+}
+
+@mixin detailHeader {
+  .detail {
+    background-color: $cl-gray-light-bg;
+
+    .info {
+      padding: 40px 0 60px;
+
+      container {
+        @include flexbox;
+        @include flex-direction(column);
+
+        .header {
+          @include flexbox;
+          @include justify-content(space-between);
+
+          .title {
+            @include flexbox;
+            @include flex-direction(column);
+            @include gap(4px);
+
+            h2 {
+              @include heading_2;
+            }
+
+            .company {
+              @include font-(20px, 120%);
+              font-family: $font-700;
+              color: $cl-blue-middle;
+
+              cursor: pointer;
+            }
+
+            .type {
+              @include font-(14px, 120%);
+            }
+
+            .simplified {
+              margin-top: 12px;
+
+              @include font-(14px, 120%);
+              font-style: italic;
+            }
+
+            .delisted {
+              margin-top: 12px;
+
+              @include font-(14px, 120%);
+              color: $cl-red;
+              margin-bottom: 12px;
+            }
+          }
+        }
+
+        app-security-trade-table {
+          margin: 24px 0 40px;
+        }
+
+        app-select {
+          align-self: flex-start;
+          margin: 40px 0 24px;
+        }
+
+        app-security-last-deals-table {
+          margin-top: 60px;
+        }
+
+        app-ksu-last-deals-table {
+          margin-top: 60px;
+        }
+
+        app-another-securities-table {
+          margin-top: 60px;
+        }
+
+        .characteristics {
+          @include flexbox;
+          @include gap(40px);
+
+          margin-top: 24px;
+        }
+      }
+    }
+
+    .news {
+      background: $cl-white-bg;
+      padding: 60px 0;
+    }
+  }
+}
