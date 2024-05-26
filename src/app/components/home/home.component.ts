@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product.service';
 import { ProductModelServer, serverResponse } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'mg-home',
@@ -13,11 +14,13 @@ export class HomeComponent implements OnInit {
   products: any[] = [];
   searchTerm: string = '';
   noDataFound: boolean = false;
+  question: string = '';
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -31,15 +34,44 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  sendQuestion(event: Event) {
+    event.preventDefault();
+    const emailContent = {
+      subject: 'Новый вопрос с магазина Ring',
+      body: `Добрый день!\nВам пришел новый вопрос с магазина Ring\n\nВопрос: ${this.question}`,
+    };
+
+    this.http.post('/api/send-email', emailContent).subscribe(
+      (response) => {
+        console.log('Email sent successfully', response);
+      },
+      (error) => {
+        console.error('Error sending email', error);
+      }
+    );
+  }
+
   imageBlocks = [
-    { image: 'assets/img/image1.jpg' },
-    { image: 'assets/img/image2.jpg' },
-    { image: 'assets/img/image3.jpg' },
-    { image: 'assets/img/image4.jpg' },
-    { image: 'assets/img/image5.jpg' },
-    { image: 'assets/img/image6.jpg' },
-    { image: 'assets/img/image7.jpg' },
-    { image: 'assets/img/image8.jpg' },
+    { image: 'assets/img/main/ring.jpg', text: 'Кольца', link: 'rings' },
+    { image: 'assets/img/main/earrings.jpg', text: 'Серьги', link: 'earrings' },
+    { image: 'assets/img/main/necklace.jpg', text: 'Колье', link: 'necklace' },
+    {
+      image: 'assets/img/main/pearcing.jpg',
+      text: 'Пирсинг',
+      link: 'piercing',
+    },
+    {
+      image: 'assets/img/main/pendant.jpg',
+      text: 'Подвески',
+      link: 'suspensions',
+    },
+    {
+      image: 'assets/img/main/bacelets.jpg',
+      text: 'Браслеты',
+      link: 'bracelets',
+    },
+    { image: 'assets/img/main/brooches.jpg', text: 'Броши', link: 'brooches' },
+    { image: 'assets/img/main/crosses.jpg', text: 'Кресты', link: 'crosses' },
   ];
 
   AddProduct(id: number) {

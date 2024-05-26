@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule, NgForm } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile-edit',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './profile-edit.component.html',
   styleUrl: './profile-edit.component.scss',
 })
@@ -24,6 +25,7 @@ export class ProfileEditComponent implements OnInit {
         (response) => console.log('Profile updated successfully!', response),
         (error) => console.error('Error updating profile:', error)
       );
+      this.authService.logout();
     }
   }
 }

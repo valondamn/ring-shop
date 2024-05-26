@@ -29,7 +29,7 @@ export class EarringsComponent implements OnInit {
       .getAllProducts(1000)
       .subscribe((prods: serverResponse) => {
         this.products = prods.products.filter(
-          (product) => product.cat_id === 3
+          (product) => product.cat_id === 2
         );
         console.log(this.products);
       });
@@ -55,7 +55,7 @@ export class EarringsComponent implements OnInit {
         .getAllProducts(1000)
         .subscribe((prods: serverResponse) => {
           this.products = prods.products.filter(
-            (product) => product.cat_id === 3
+            (product) => product.cat_id === 2
           );
           this.noDataFound = false;
         });

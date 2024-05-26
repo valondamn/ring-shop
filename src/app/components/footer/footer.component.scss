@@ -1,0 +1,34 @@
+
+
+#footer{
+  background-color: #FCF7FF;
+  color: #6f42c1;
+}
+
+.first-block {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid #d6d6d6;
+  font-size: 18px;
+
+
+  .number{
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .icon{
+    width: 45px;
+  }
+
+}
+  .second-block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px 0;
+  }

@@ -11,15 +11,7 @@
         </ul>
         <div class="col-md-3 clearfix">
           <div class="header-ctn">
-            <!-- Wishlist -->
-            <div>
-              <a href="#">
-                <i class="fa fa-heart-o"></i>
-                <span class="cart-text">Your Wishlist</span>
-                <div class="qty">0</div>
-              </a>
-            </div>
-            <!-- /Wishlist -->
+
 
             <!-- Cart -->
             <div class="dropdown">
@@ -81,19 +73,19 @@
           <!-- container -->
           <ul class="main-nav nav py-3">
             <div class="logo">
-              <img src="assets/img/logo.svg">
+              <a [routerLink]="['']"> <img src="assets/img/logo.svg"></a>
             </div>
-            <li><a [routerLink]="['']">Главная</a></li>
             <li><a [routerLink]="['rings']">Кольца</a></li>
-            <li><a [routerLink]="['chains']">Подвески</a></li>
-            <li><a [routerLink]="['earrings']">Цепи</a></li>
-            <li><a [routerLink]="['earrings']">Колье</a></li>
-            <li><a [routerLink]="['earrings']">Браслеты</a></li>
-            <li><a [routerLink]="['earrings']">Пирсинг</a></li>
+            <li><a [routerLink]="['earrings']">Серьги</a></li>
+            <li><a [routerLink]="['necklace']">Колье</a></li>
+            <li><a [routerLink]="['piercing']">Пирсинг</a></li>
+            <li><a [routerLink]="['suspensions']">Подвески</a></li>
+            <li><a [routerLink]="['bracelets']">Браслеты</a></li>
+            <li><a [routerLink]="['brooches']">Броши</a></li>
+            <li><a [routerLink]="['crosses']">Кресты</a></li>
 
           </ul>
           <ul class="header-links pull-right">
-            <li><a href="#"><i class="fa fa-dollar"></i> KZT</a></li>
             <li *ngIf="!isLoggedIn"><a routerLink="/register"><i class="fa fa-user-o"></i> Register</a></li>
             <li *ngIf="!isLoggedIn"><a routerLink="/login"><i class="fa fa-user-o"></i>Login</a></li>
             <li class="username" *ngIf="isLoggedIn">
@@ -103,8 +95,6 @@
 
             </li>
             <!-- HTML !-->
-
-
           </ul>
           <!-- /NAV -->
           <!-- /LOGO -->

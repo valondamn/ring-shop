@@ -1,4 +1,6 @@
 <form #editProfileForm="ngForm" (ngSubmit)="updateProfile(editProfileForm)">
+  <h1>Редактирование</h1>
+
   <input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
   <input type="password" name="password" [(ngModel)]="user.password" placeholder="Password" required>
   <input type="email" name="email" [(ngModel)]="user.email" placeholder="Email" required>
@@ -6,5 +8,5 @@
   <input type="text" name="lname" [(ngModel)]="user.lname" placeholder="Last Name">
   <input type="number" name="age" [(ngModel)]="user.age" placeholder="Age">
   <input type="text" name="photoUrl" [(ngModel)]="user.photoUrl" placeholder="Photo URL">
-  <button type="submit">Update Profile</button>
+  <button routerLink="/login" type="submit" >Обновить</button>
 </form>

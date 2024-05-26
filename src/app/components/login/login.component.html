@@ -1,6 +1,8 @@
 <!-- login.component.html -->
 <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+  <h1>Авторизация</h1>
   <input type="text" name="username" ngModel placeholder="Username" required>
   <input type="password" name="password" ngModel placeholder="Password" required>
-  <button type="submit">Login</button>
+  <button type="submit">Войти</button>
+  <span>Нет аккаунта? <a routerLink="/register"><i class="fa "></i>Регистрация</a></span>
 </form>

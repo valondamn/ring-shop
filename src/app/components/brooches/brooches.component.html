@@ -1,0 +1,126 @@
+<!-- SECTION -->
+<!--<div class="section">-->
+<!--  &lt;!&ndash; container &ndash;&gt;-->
+<!--  <div class="container">-->
+<!--    &lt;!&ndash; row &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--      &lt;!&ndash; shop &ndash;&gt;-->
+<!--      <div class="col-md-4 col-xs-6">-->
+<!--        <div class="shop">-->
+<!--          <div class="shop-img">-->
+<!--            <img src="./../../../assets/img/shop01.png" alt="">-->
+<!--          </div>-->
+<!--          <div class="shop-body">-->
+<!--            <h3>Laptop<br>Collection</h3>-->
+<!--            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; /shop &ndash;&gt;-->
+
+<!--      &lt;!&ndash; shop &ndash;&gt;-->
+<!--      <div class="col-md-4 col-xs-6">-->
+<!--        <div class="shop">-->
+<!--          <div class="shop-img">-->
+<!--            <img src="./../../../assets/img/shop03.png" alt="">-->
+<!--          </div>-->
+<!--          <div class="shop-body">-->
+<!--            <h3>Accessories<br>Collection</h3>-->
+<!--            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; /shop &ndash;&gt;-->
+
+<!--      &lt;!&ndash; shop &ndash;&gt;-->
+<!--      <div class="col-md-4 col-xs-6">-->
+<!--        <div class="shop">-->
+<!--          <div class="shop-img">-->
+<!--            <img src="./../../../assets/img/shop02.png" alt="">-->
+<!--          </div>-->
+<!--          <div class="shop-body">-->
+<!--            <h3>Cameras<br>Collection</h3>-->
+<!--            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; /shop &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; /row &ndash;&gt;-->
+<!--  </div>-->
+<!--  &lt;!&ndash; /container &ndash;&gt;-->
+<!--</div>-->
+<!-- /SECTION -->
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+
+      <!-- section title -->
+      <div class="col-md-12">
+        <div class="section-title">
+          <h3 class="title">Броши</h3>
+        </div>
+      </div>
+      <!-- /section title -->
+
+
+      <!-- Products tab & slick -->
+
+      <div class="input-container">
+        <input
+          class="input"
+          placeholder="Поиск"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="searchProducts($event)"
+          type="search"
+        >
+      </div>
+
+      <div class="col-md-12">
+        <div class="row">
+
+          <div class="error-container" *ngIf="noDataFound; else productLoop">
+            <p class="error">Продуктов не найдено</p>
+          </div>
+          <ng-template #productLoop>
+
+            <div class="col-md-4 col-sm-6" *ngFor="let p of products">
+              <div class="card my-2">
+                <img [src]="p.image" alt="{{p.name}}" width="200px" class="card-img-top" (click)="selectProduct(p.id)"
+                     style="cursor:pointer;">
+                <div class="card-header">
+                  <div class="card-title">
+                    <p>{{ p.title | titlecase }}</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h6>{{ p.description.substr(0, 40) }} ....</h6>
+                  <p class="lead">{{ p.price | currency:'USD' }}</p>
+                </div>
+
+                <div class="row d-flex justify-content-center border-primary my-3">
+                  <div class="col-md-6 ">
+                    <button class="btn btn-outline-primary btn-sm btn-block"
+                            [class.disabled]="p.quantity < 1"
+                            [class.btn-outline-danger]="p.quantity < 1"
+                            (click)="AddProduct(p.id)" [disabled]="p.quantity < 1">
+                      {{ p.quantity < 1 ? "NO STOCK" : "Add To Cart" }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /container -->
+
+<!-- /SECTION -->
