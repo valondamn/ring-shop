@@ -90,5 +90,19 @@
   <!-- /container -->
 </div>
 <!-- /SECTION -->
-
+  <div id="newsletter" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="newsletter">
+            <h1>Вы можете отправить комментарий к товару</h1>
+            <form (submit)="sendQuestion($event)">
+              <textarea class="textarea" placeholder="Ваш комментарий" [(ngModel)]="question" name="question"></textarea>
+              <button type="submit" class="button-18">Отправить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 }

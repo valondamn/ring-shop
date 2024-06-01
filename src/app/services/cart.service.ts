@@ -250,8 +250,17 @@ export class CartService {
       return;
     }
   }
-
   CheckoutFromCart(userId: number) {
+    const orderPayload = {
+      userId: userId,
+      products: this.cartDataClient.prodData.map((prod) => ({
+        id: prod.id,
+        quantity: prod.incart,
+      })),
+    };
+
+    console.log('Order Payload:', orderPayload);
+
     this.httpClient
       .post(`${this.ServerURL}orders/payment`, null)
       .subscribe((res: any) => {
@@ -260,10 +269,7 @@ export class CartService {
         if (res.success) {
           this.resetServerData();
           this.httpClient
-            .post(`${this.ServerURL}orders/new`, {
-              userId: userId,
-              products: this.cartDataClient.prodData,
-            })
+            .post(`${this.ServerURL}orders/new`, orderPayload)
             .subscribe((data: any) => {
               this.orderService.getSingleOrder(data.order_id).then((prods) => {
                 if (data.success) {

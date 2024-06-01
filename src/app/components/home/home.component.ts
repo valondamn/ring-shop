@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { ProductModelServer, serverResponse } from '../../models/product.model';
+import { serverResponse } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'mg-home',
@@ -15,12 +17,14 @@ export class HomeComponent implements OnInit {
   searchTerm: string = '';
   noDataFound: boolean = false;
   question: string = '';
+  isLoggedIn: boolean = false;
+
+  serverURL = environment.serverURL;
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService,
-    private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -32,23 +36,54 @@ export class HomeComponent implements OnInit {
         );
         console.log(this.products);
       });
+
+    this.isLoggedIn = this.authService.isLoggedIn();
+    if (this.isLoggedIn) {
+      const user = this.authService.getUser();
+      const from = user && user.email ? user.email : 'No name';
+    }
   }
 
   sendQuestion(event: Event) {
     event.preventDefault();
-    const emailContent = {
-      subject: 'Новый вопрос с магазина Ring',
-      body: `Добрый день!\nВам пришел новый вопрос с магазина Ring\n\nВопрос: ${this.question}`,
-    };
+    const user = this.authService.getUser();
+    const from = user.email;
 
-    this.http.post('/api/send-email', emailContent).subscribe(
-      (response) => {
-        console.log('Email sent successfully', response);
-      },
-      (error) => {
-        console.error('Error sending email', error);
-      }
-    );
+    if (this.isLoggedIn) {
+      const emailContent = {
+        from: from,
+        to: 'danilovvadim.0404@gmail.com',
+        subject: 'Новый вопрос с магазина Ring',
+        text: `Добрый день!\nВам пришел новый вопрос с магазина Ring\n\nВопрос: ${this.question}`,
+      };
+
+      console.log(emailContent); // Добавьте это для отладки
+      this.http.post(`${this.serverURL}send-email/new`, emailContent).subscribe(
+        (response) => {
+          console.log('Email sent successfully', response);
+        },
+        (error) => {
+          console.error('Error sending email', error);
+        }
+      );
+    } else {
+      const emailContent = {
+        from: 'No name',
+        to: 'danilovvadim.0404@gmail.com',
+        subject: 'Новый вопрос с магазина Ring',
+        text: `Добрый день!\nВам пришел новый вопрос с магазина Ring\n\nВопрос: ${this.question}\n\n *Анонимно`,
+      };
+
+      console.log(emailContent); // Добавьте это для отладки
+      this.http.post(`${this.serverURL}send-email/new`, emailContent).subscribe(
+        (response) => {
+          console.log('Email sent successfully', response);
+        },
+        (error) => {
+          console.error('Error sending email', error);
+        }
+      );
+    }
   }
 
   imageBlocks = [
@@ -73,30 +108,4 @@ export class HomeComponent implements OnInit {
     { image: 'assets/img/main/brooches.jpg', text: 'Броши', link: 'brooches' },
     { image: 'assets/img/main/crosses.jpg', text: 'Кресты', link: 'crosses' },
   ];
-
-  AddProduct(id: number) {
-    this.cartService.AddProductToCart(id);
-  }
-
-  selectProduct(id: Number) {
-    this.router.navigate(['/product', id]).then();
-  }
-
-  searchProducts(searchTerm: string) {
-    if (searchTerm.trim() !== '') {
-      this.products = this.products.filter(
-        (product) =>
-          product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      this.noDataFound = this.products.length === 0;
-    } else {
-      this.productService
-        .getAllProducts(1000)
-        .subscribe((prods: serverResponse) => {
-          this.products = prods.products;
-          this.noDataFound = false;
-        });
-    }
-  }
 }

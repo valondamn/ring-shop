@@ -11,37 +11,33 @@
         </ul>
         <div class="col-md-3 clearfix">
           <div class="header-ctn">
-
-
             <!-- Cart -->
-            <div class="dropdown">
+            <div *ngIf="isLoggedIn" class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" style="cursor: pointer;">
-                <i class="fa fa-shopping-cart"></i>
+                <i class="fa cart-icon fa-shopping-cart"></i>
                 <span class="cart-text">Your Cart</span>
-                <div class="qty">{{ cartData.data[0].numInCart !== 0 ? cartData.data.length : 0 }}</div>
+                <div class="qty">{{ cartData.data[0]?.numInCart !== 0 ? cartData.data.length : 0 }}</div>
               </a>
               <div class="cart-dropdown">
-                <div class="cart-list" *ngIf="cartData.data[0].numInCart !== 0">
+                <div class="cart-list" *ngIf="cartData.data[0]?.numInCart !== 0">
                   <div class="product-widget" *ngFor="let c of cartData.data; let i=index">
                     <div class="product-img">
-                      <img src="{{ c.product?.image }}" alt="" width="20px">
+                      <img [src]="c.product?.image" alt="" width="20px">
                     </div>
                     <div class="product-body">
                       <h3 class="product-name"><a href="#">{{ c.product?.name }}</a></h3>
-                      <h4 class="product-price"><span class="qty">{{ c.numInCart }}
-                        x </span>{{ c.product?.price | currency:'USD' }}</h4>
+                      <h4 class="product-price"><span class="qty">{{ c.numInCart }} x </span>{{ c.product?.price | currency:'USD' }}</h4>
                     </div>
-                    <button class="delete" (click)="cartService.DeleteProductFromCart(i)"><i class="fa fa-close"></i>
-                    </button>
+                    <button class="delete" (click)="cartService.DeleteProductFromCart(i)"><i class="fa fa-close"></i></button>
                   </div>
                 </div>
                 <div class="cart-summary">
-                  <small>{{ cartData.data[0].numInCart !== 0 ? cartData.data.length : 0 }} Item(s) selected</small>
-                  <h5>TOTAL: {{ cartTotal | currency:'USD' }}</h5>
+                  <small>Добавлено {{ cartData.data[0]?.numInCart !== 0 ? cartData.data.length : 0 }} товаров</small>
+                  <h5>Общая сумма: {{ cartTotal | currency:'USD' }}</h5>
                 </div>
                 <div class="cart-btns">
-                  <a routerLink="/cart">View Cart</a>
-                  <a routerLink="/checkout">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                  <a class="cart-btn" routerLink="/cart">Перейти в корзину</a>
+                  <a class="checkout-btn" routerLink="/checkout">Оформить заказ <i class="checkout-btn fa fa-arrow-circle-right"></i></a>
                 </div>
               </div>
             </div>
@@ -83,24 +79,19 @@
             <li><a [routerLink]="['bracelets']">Браслеты</a></li>
             <li><a [routerLink]="['brooches']">Броши</a></li>
             <li><a [routerLink]="['crosses']">Кресты</a></li>
-
           </ul>
           <ul class="header-links pull-right">
             <li *ngIf="!isLoggedIn"><a routerLink="/register"><i class="fa fa-user-o"></i> Register</a></li>
-            <li *ngIf="!isLoggedIn"><a routerLink="/login"><i class="fa fa-user-o"></i>Login</a></li>
+            <li *ngIf="!isLoggedIn"><a routerLink="/login"><i class="fa fa-user-o"></i> Login</a></li>
             <li class="username" *ngIf="isLoggedIn">
               <a routerLink="/profile"><i class="fa fa-user-o"></i> {{ username }}</a>
               <button class="button-18" role="button" (click)="logout()">Logout</button>
-
-
             </li>
-            <!-- HTML !-->
           </ul>
           <!-- /NAV -->
           <!-- /LOGO -->
         </nav>
         <!-- ACCOUNT -->
-
         <!-- /ACCOUNT -->
       </div>
       <!-- row -->

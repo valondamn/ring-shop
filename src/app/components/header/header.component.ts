@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { CartModelServer } from '../../models/cart.model';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -10,8 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  cartData!: CartModelServer;
-  cartTotal!: number;
+  cartData: any; // Using 'any' type temporarily for simplicity
+  cartTotal: number = 0;
   isLoggedIn: boolean = false;
   username: string | null = '';
 
@@ -26,7 +25,9 @@ export class HeaderComponent implements OnInit {
       this.cartTotal = total;
     });
 
-    this.cartService.cartDataObs$.subscribe((data) => (this.cartData = data));
+    this.cartService.cartDataObs$.subscribe((data) => {
+      this.cartData = data;
+    });
 
     this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {

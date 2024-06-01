@@ -20,10 +20,7 @@
   justify-content: space-between;
   width: 100%;
 
-  .nav-cart {
 
-
-  }
 
   .main-nav {
     a {
@@ -131,8 +128,16 @@ ul {
   color: rgba(0, 0, 0, .3);
 }
 
-.fa {
+.cart-icon {
   color: #6f42c1;
+}
+
+.checkout-btn{
+  background-color: #9719ee !important;
+}
+.cart-btn{
+  background-color: #D10024 !important;
+
 }
 
 .cart-text {
