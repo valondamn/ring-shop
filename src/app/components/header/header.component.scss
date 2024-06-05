@@ -36,12 +36,17 @@
   }
 }
 
+
+
 .main-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 
+  a:link {
+    text-decoration: none;
+  }
 }
 
 

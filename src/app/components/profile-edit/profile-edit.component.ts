@@ -25,7 +25,6 @@ export class ProfileEditComponent implements OnInit {
         (response) => console.log('Profile updated successfully!', response),
         (error) => console.error('Error updating profile:', error)
       );
-      this.authService.logout();
     }
   }
 }
