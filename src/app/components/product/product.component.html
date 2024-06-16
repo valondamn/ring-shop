@@ -89,17 +89,30 @@
   </div>
   <!-- /container -->
 </div>
+  <!-- SECTION -->
+
+
+
 <!-- /SECTION -->
   <div id="newsletter" class="section">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="newsletter">
-            <h1>Вы можете отправить комментарий к товару</h1>
-            <form (submit)="sendQuestion($event)">
-              <textarea class="textarea" placeholder="Ваш комментарий" [(ngModel)]="question" name="question"></textarea>
+            <div *ngIf="isLoggedIn">
+            <h1>Вы можете оставить комментарий к товару</h1>
+            <form (submit)="addComment($event)">
+              <textarea class="comment-textarea" placeholder="Ваш комментарий" [(ngModel)]="newComment" name="newComment"></textarea>
               <button type="submit" class="button-18">Отправить</button>
             </form>
+            </div>
+            <div *ngIf="!isLoggedIn">
+              <p>Пожалуйста, войдите, чтобы оставить комментарий.</p>
+            </div>
+          </div>
+          <h3>Комментарии</h3>
+          <div *ngFor="let comment of comments">
+            <p class="comment"><strong>{{comment.user_email}}:</strong> {{comment.comment}}</p>
           </div>
         </div>
       </div>

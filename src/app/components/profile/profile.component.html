@@ -1,13 +1,34 @@
 <div class="profile-container">
   <h1>Мой профиль</h1>
-  <div class="profile-details">
+  <div *ngIf="!isEditing" class="profile-details">
     <img [src]="user.photoUrl" alt="Profile Photo" *ngIf="user.photoUrl">
-
     <p><strong>Логин:</strong> {{ user.username }}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
     <p><strong>Имя:</strong> {{ user.fname }}</p>
     <p><strong>Фамилия:</strong> {{ user.lname }}</p>
     <p><strong>Возраст:</strong> {{ user.age }}</p>
+    <button (click)="toggleEdit()">Редактировать</button>
+  </div>
 
+  <div *ngIf="isEditing" class="edit-profile">
+    <form (ngSubmit)="updateProfile()">
+      <label for="username">Логин:</label>
+      <input type="text" id="username" [(ngModel)]="user.username" name="username" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+
+      <label for="fname">Имя:</label>
+      <input type="text" id="fname" [(ngModel)]="user.fname" name="fname">
+
+      <label for="lname">Фамилия:</label>
+      <input type="text" id="lname" [(ngModel)]="user.lname" name="lname">
+
+      <label for="age">Возраст:</label>
+      <input type="number" id="age" [(ngModel)]="user.age" name="age">
+
+      <button type="submit">Сохранить</button>
+      <button type="button" (click)="toggleEdit()">Отмена</button>
+    </form>
   </div>
 </div>

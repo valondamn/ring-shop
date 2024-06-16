@@ -1,56 +1,4 @@
-<!-- SECTION -->
-<!--<div class="section">-->
-<!--  &lt;!&ndash; container &ndash;&gt;-->
-<!--  <div class="container">-->
-<!--    &lt;!&ndash; row &ndash;&gt;-->
-<!--    <div class="row">-->
-<!--      &lt;!&ndash; shop &ndash;&gt;-->
-<!--      <div class="col-md-4 col-xs-6">-->
-<!--        <div class="shop">-->
-<!--          <div class="shop-img">-->
-<!--            <img src="./../../../assets/img/shop01.png" alt="">-->
-<!--          </div>-->
-<!--          <div class="shop-body">-->
-<!--            <h3>Laptop<br>Collection</h3>-->
-<!--            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; /shop &ndash;&gt;-->
 
-<!--      &lt;!&ndash; shop &ndash;&gt;-->
-<!--      <div class="col-md-4 col-xs-6">-->
-<!--        <div class="shop">-->
-<!--          <div class="shop-img">-->
-<!--            <img src="./../../../assets/img/shop03.png" alt="">-->
-<!--          </div>-->
-<!--          <div class="shop-body">-->
-<!--            <h3>Accessories<br>Collection</h3>-->
-<!--            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; /shop &ndash;&gt;-->
-
-<!--      &lt;!&ndash; shop &ndash;&gt;-->
-<!--      <div class="col-md-4 col-xs-6">-->
-<!--        <div class="shop">-->
-<!--          <div class="shop-img">-->
-<!--            <img src="./../../../assets/img/shop02.png" alt="">-->
-<!--          </div>-->
-<!--          <div class="shop-body">-->
-<!--            <h3>Cameras<br>Collection</h3>-->
-<!--            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; /shop &ndash;&gt;-->
-<!--    </div>-->
-<!--    &lt;!&ndash; /row &ndash;&gt;-->
-<!--  </div>-->
-<!--  &lt;!&ndash; /container &ndash;&gt;-->
-<!--</div>-->
-<!-- /SECTION -->
 
 <!-- SECTION -->
 <div class="section">
@@ -98,6 +46,7 @@
                   </div>
                 </div>
                 <div class="card-body">
+                  <p>Номер товара: {{p.id}}</p>
                   <h6>{{ p.description.substr(0, 40) }} ....</h6>
                   <p class="lead">{{ p.price | currency:'USD' }}</p>
                 </div>

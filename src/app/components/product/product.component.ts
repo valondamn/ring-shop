@@ -22,8 +22,11 @@ export class ProductComponent implements AfterViewInit, OnInit {
   products: any[] = [];
   searchTerm: string = '';
   noDataFound: boolean = false;
-  question: string = '';
+  newComment: string = '';
+  comments: any[] = [];
   isLoggedIn: boolean = false;
+  user: any;
+  question: string = '';
 
   serverURL = environment.serverURL;
 
@@ -53,21 +56,14 @@ export class ProductComponent implements AfterViewInit, OnInit {
             this.thumbimages = prod.images.split(';');
           }
         });
-      });
 
-    this.productService
-      .getAllProducts(1000)
-      .subscribe((prods: serverResponse) => {
-        this.products = prods.products.filter(
-          (product) => product.cat_id === 1
-        );
-        console.log(this.products);
+        // Получение комментариев
+        this.getComments(this.id);
       });
 
     this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {
-      const user = this.authService.getUser();
-      const from = user && user.email ? user.email : 'No name';
+      this.user = this.authService.getUser();
     }
   }
 
@@ -148,8 +144,29 @@ export class ProductComponent implements AfterViewInit, OnInit {
     }
     this.quantityInput.nativeElement.value = value.toString();
   }
+  getComments(productId: number) {
+    this.http
+      .get(`${this.serverURL}comments/${productId}`)
+      .subscribe((comments: any) => {
+        this.comments = comments;
+      });
+  }
+  addComment(event: Event) {
+    event.preventDefault();
+    if (this.isLoggedIn && this.newComment.trim()) {
+      const commentData = {
+        user_id: this.user.id,
+        product_id: this.id,
+        comment: this.newComment,
+      };
+      this.http
+        .post(`${this.serverURL}comments`, commentData)
+        .subscribe((response: any) => {
+          this.comments.push(response);
+          this.newComment = '';
+        });
+    }
 
-  sendQuestion(event: Event) {
     event.preventDefault();
     const user = this.authService.getUser();
     const from = user.email;
@@ -159,7 +176,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
         from: from,
         to: 'danilovvadim.0404@gmail.com',
         subject: 'Новый вопрос с магазина Ring',
-        text: `Добрый день!\nВам пришел новый вопрос с магазина Ring\n\nВопрос: ${this.question}\n\nId товара: ${this.id}`,
+        text: `Добрый день!\nВам пришел новый комментарий с магазина Ring\n\nКомментарий: ${this.newComment}\n\nId товара: ${this.id}`,
       };
 
       console.log(emailContent); // Добавьте это для отладки
@@ -176,7 +193,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
         from: 'No name',
         to: 'danilovvadim.0404@gmail.com',
         subject: 'Новый вопрос с магазина Ring',
-        text: `Добрый день!\nВам пришел новый вопрос с магазина Ring\n\nВопрос: ${this.question}\n\nId товара: ${this.id} \n\n*Анонимно`,
+        text: `Добрый день!\nВам пришел новый комментарий с магазина Ring\n\nКомментарий: ${this.newComment}\n\nId товара: ${this.id} \n\n*Анонимно`,
       };
 
       console.log(emailContent); // Добавьте это для отладки

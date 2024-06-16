@@ -64,6 +64,25 @@
   border: none
 }
 
+.comment-textarea{
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  height: 150px;
+  resize: none; /* Убирает возможность изменения размера */
+  border-color: #9719ee;
+  border-radius: 20px;
+}
+
+.comment{
+  margin: 0;
+  padding: 24px 0;
+  border-top: 1px solid rgba(128, 128, 128, 0.56);
+
+}
+
 .newsletter .textarea {
   width: 100%;
   padding: 10px;

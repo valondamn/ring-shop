@@ -31,7 +31,6 @@ export class RingsComponent implements OnInit {
         this.products = prods.products.filter(
           (product) => product.cat_id === 1
         );
-        console.log(this.products);
       });
   }
   AddProduct(id: number) {
