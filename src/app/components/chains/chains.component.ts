@@ -47,7 +47,10 @@ export class ChainsComponent implements OnInit {
       this.products = this.products.filter(
         (product) =>
           product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.description.toLowerCase().includes(searchTerm.toLowerCase())
+          product.description
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          product.id.toString().includes(searchTerm.toLowerCase())
       );
       this.noDataFound = this.products.length === 0;
     } else {
